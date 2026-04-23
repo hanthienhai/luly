@@ -1,0 +1,53 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Gallery from '../../components/Gallery.astro';
+---
+
+<Layout title="Concept | Luly.vn">
+  <section class="page-header text-center my-lg fade-in">
+    <div class="container">
+      <h1>Concept</h1>
+      <p class="subtitle">Khám phá các góc hình đa dạng</p>
+      
+      <div class="concept-links">
+        <a href="/concept/indoor" class="btn">Indoor</a>
+        <a href="/concept/outdoor" class="btn">Outdoor</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="portfolio-section container fade-in" style="animation-delay: 0.3s;">
+    <Gallery folder="concept" />
+  </section>
+</Layout>
+
+<style>
+  .page-header {
+    padding-top: var(--spacing-lg);
+  }
+  .page-header h1 {
+    font-size: 3rem;
+  }
+  .subtitle {
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
+  }
+  .concept-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  .btn {
+    padding: 0.75rem 2rem;
+    border: 1px solid var(--color-text);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+  }
+  .btn:hover {
+    background-color: var(--color-text);
+    color: var(--color-bg);
+  }
+</style>

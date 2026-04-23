@@ -1,0 +1,33 @@
+---
+import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+	title: string;
+    description?: string;
+}
+
+const { title, description = 'Luly.vn - Dịch vụ Nhiếp ảnh Cưới Chuyên nghiệp' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="vi">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title} | Luly.vn</title>
+        <ClientRouter />
+	</head>
+	<body>
+        <Header />
+        <main class="fade-in">
+		    <slot />
+        </main>
+        <Footer />
+	</body>
+</html>

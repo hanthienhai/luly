@@ -1,0 +1,147 @@
+---
+const navLinks = [
+  { text: 'Trang chủ', url: '/' },
+  { 
+    text: 'Wedding', 
+    url: '#',
+    subnav: [
+      { text: 'Pre-Wedding', url: '/wedding/pre-wedding' },
+      { text: 'Wedding Day', url: '/wedding/wedding-day' }
+    ]
+  },
+  { 
+    text: 'Concept', 
+    url: '/concept',
+    subnav: [
+      { text: 'Indoor', url: '/concept/indoor' },
+      { text: 'Outdoor', url: '/concept/outdoor' }
+    ]
+  },
+  { text: 'Giới Thiệu', url: '/gioi-thieu' }
+];
+---
+
+<header class="header">
+  <div class="header-container">
+    <div class="logo">
+      <a href="/">LULY.VN</a>
+    </div>
+    
+    <nav class="nav-desktop">
+      <ul>
+        {navLinks.map((link) => (
+          <li class="has-sub">
+            <a href={link.url}>{link.text}</a>
+            {link.subnav && (
+              <ul class="submenu">
+                {link.subnav.map((sub) => (
+                  <li><a href={sub.url}>{sub.text}</a></li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))}
+      </ul>
+    </nav>
+    <div class="mobile-menu-btn">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</header>
+
+<style>
+  .header {
+    background-color: var(--color-bg);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid #ebebeb;
+  }
+  .header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .logo a {
+    font-family: var(--font-serif);
+    font-size: 1.75rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: var(--color-text);
+  }
+  .nav-desktop ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+  }
+  .nav-desktop li {
+    position: relative;
+    padding: 0.5rem 0;
+  }
+  .nav-desktop a {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--color-text-muted);
+  }
+  .nav-desktop a:hover {
+    color: var(--color-text);
+  }
+  
+  /* Dropdown Styles */
+  .submenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #fff;
+    min-width: 180px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    border: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem 0;
+  }
+  .has-sub:hover .submenu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .submenu li {
+    padding: 0;
+  }
+  .submenu a {
+    display: block;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.85rem;
+  }
+  .submenu a:hover {
+    background: #fdfdfd;
+    color: var(--color-text);
+  }
+  
+  .mobile-menu-btn {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+  }
+  .mobile-menu-btn span {
+    width: 25px;
+    height: 2px;
+    background: var(--color-text);
+    transition: 0.3s;
+  }
+  @media (max-width: 768px) {
+    .nav-desktop { display: none; }
+    .mobile-menu-btn { display: flex; }
+  }
+</style>

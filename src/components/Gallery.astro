@@ -1,0 +1,50 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+import { Image } from 'astro:assets';
+
+interface Props {
+  folder: string;
+}
+
+const { folder } = Astro.props;
+
+// Read images from the dynamically generated asset folder (now in public)
+const directoryPath = path.join(process.cwd(), 'public', 'images', folder);
+
+let images: string[] = [];
+
+try {
+  if (fs.existsSync(directoryPath)) {
+    const files = fs.readdirSync(directoryPath);
+    images = files.filter(file => /\.(jpg|jpeg|png|webp|avif)$/i.test(file));
+  }
+} catch (error) {
+  console.error("Error reading directory", error);
+}
+
+// Map them to the corresponding import path since dynamic imports in Astro component scripts can be tricky over full filesystem.
+// We'll actually construct the path to let Vite serve them, or use dynamic import wildcard.
+// Easiest is to generate public URLs. Wait, we saved them directly to src/assets. 
+// We will generate an array of paths that can be used directly if we serve them from public.
+// However they are in `src/assets`. With Astro, we can import them dynamically using Vite's import.meta.glob
+---
+
+<div class="masonry-grid">
+  {images.length > 0 ? (
+    images.map((imgName) => {
+        // Since we cannot use dynamic string interopolation with deep import in Astro Images easily,
+        // we'll render a simple img tag but use an absolute path representation, or setup an endpoint. 
+        // Wait, for SSG, we should ideally put these in `public/images/folder` so they don't break dynamic imports.
+        // Actually, let's just use regular img tags pointing to a route, but for now they are in src/assets/images!
+        // To make it simple I'll move them to public instead in the script or serve statically.
+        return (
+          <div class="masonry-item">
+             <img src={`/images/${folder}/${imgName}`} alt={`Image from ${folder}`} loading="lazy" />
+          </div>
+        )
+    })
+  ) : (
+    <p class="text-center">Đang cập nhật hình ảnh...</p>
+  )}
+</div>

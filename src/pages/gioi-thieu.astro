@@ -1,0 +1,40 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Gallery from '../components/Gallery.astro';
+---
+
+<Layout title="Giới Thiệu | Luly.vn">
+  <section class="page-header text-center my-lg fade-in">
+    <div class="container" style="max-width: 800px;">
+      <h1>Giới Thiệu</h1>
+      <p class="subtitle">Luly.vn - Thấu hiểu mọi khoảnh khắc</p>
+      
+      <div class="about-content" style="margin-top: 3rem; text-align: justify;">
+        <p>Thành lập với đam mê mãnh liệt dành cho nhiếp ảnh nghệ thuật, Luly.vn không chỉ là một studio chụp ảnh cưới mà còn là nơi lưu giữ lại những cảm xúc chân thật nhất của bạn.</p>
+        <p>Chúng tôi tập trung vào trải nghiệm khách hàng, mang đến những bộ ảnh đẳng cấp, tinh tế và mang đậm dấu ấn cá nhân. Đội ngũ của Luly.vn luôn nỗ lực không ngừng để đem đến chất lượng hình ảnh hoàn hảo, từ ánh sáng, góc máy cho đến khâu hậu kỳ tỉ mỉ.</p>
+        <p>Hãy để chúng tôi kể lại câu chuyện của bạn bằng một ngôn ngữ nhiếp ảnh đặc biệt nhất.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="portfolio-section container fade-in" style="animation-delay: 0.3s;">
+    <Gallery folder="gioi-thieu" />
+  </section>
+</Layout>
+
+<style>
+  .page-header {
+    padding-top: var(--spacing-lg);
+  }
+  .page-header h1 {
+    font-size: 3rem;
+  }
+  .subtitle {
+    color: var(--color-text-muted);
+  }
+  .about-content p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    line-height: 1.8;
+  }
+</style>

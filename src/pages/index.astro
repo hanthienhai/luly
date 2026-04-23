@@ -1,0 +1,52 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Gallery from '../components/Gallery.astro';
+---
+
+<Layout title="Trang Chủ">
+  <section class="hero text-center my-lg fade-in">
+    <div class="container">
+      <h1>Lưu giữ khoảnh khắc</h1>
+      <p class="subtitle">Bởi Luly.vn - Photography Studio</p>
+    </div>
+  </section>
+
+  <section class="portfolio-section container fade-in" style="animation-delay: 0.3s;">
+    <div class="section-heading text-center">
+      <h2>Nổi Bật</h2>
+      <p>Những tác phẩm ấn tượng nhất của chúng tôi</p>
+    </div>
+    
+    <!-- Gallery using the images scraped from the home page -->
+    <Gallery folder="home" />
+
+  </section>
+</Layout>
+
+<style>
+  .hero {
+    padding-top: var(--spacing-xl);
+    padding-bottom: var(--spacing-lg);
+  }
+  
+  .hero h1 {
+    font-size: 4rem;
+    color: var(--color-text);
+  }
+  
+  .subtitle {
+    font-size: 1.25rem;
+    color: var(--color-text-muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 1rem;
+  }
+  
+  .section-heading {
+    margin-bottom: var(--spacing-lg);
+  }
+
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 2.5rem; }
+  }
+</style>

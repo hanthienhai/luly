@@ -1,0 +1,29 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Gallery from '../../components/Gallery.astro';
+---
+
+<Layout title="Wedding Day | Luly.vn">
+  <section class="page-header text-center my-lg fade-in">
+    <div class="container">
+      <h1>Wedding Day</h1>
+      <p class="subtitle">Ký ức trọn vẹn trong ngày trọng đại</p>
+    </div>
+  </section>
+
+  <section class="portfolio-section container fade-in" style="animation-delay: 0.3s;">
+    <Gallery folder="wedding-day" />
+  </section>
+</Layout>
+
+<style>
+  .page-header {
+    padding-top: var(--spacing-lg);
+  }
+  .page-header h1 {
+    font-size: 3rem;
+  }
+  .subtitle {
+    color: var(--color-text-muted);
+  }
+</style>

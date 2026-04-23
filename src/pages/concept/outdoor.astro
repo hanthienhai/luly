@@ -1,0 +1,29 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Gallery from '../../components/Gallery.astro';
+---
+
+<Layout title="Outdoor Concept | Luly.vn">
+  <section class="page-header text-center my-lg fade-in">
+    <div class="container">
+      <h1>Outdoor Concept</h1>
+      <p class="subtitle">Hoà mình với thiên nhiên rộng lớn</p>
+    </div>
+  </section>
+
+  <section class="portfolio-section container fade-in" style="animation-delay: 0.3s;">
+    <Gallery folder="outdoor" />
+  </section>
+</Layout>
+
+<style>
+  .page-header {
+    padding-top: var(--spacing-lg);
+  }
+  .page-header h1 {
+    font-size: 3rem;
+  }
+  .subtitle {
+    color: var(--color-text-muted);
+  }
+</style>
