@@ -1,27 +1,15 @@
 ---
-import fs from 'node:fs';
-import path from 'node:path';
-import { Image } from 'astro:assets';
-
 interface Props {
   folder: string;
 }
 
 const { folder } = Astro.props;
 
-// Read images from the dynamically generated asset folder (now in public)
-const directoryPath = path.join(process.cwd(), 'public', 'images', folder);
-
-let images: string[] = [];
-
-try {
-  if (fs.existsSync(directoryPath)) {
-    const files = fs.readdirSync(directoryPath);
-    images = files.filter(file => /\.(jpg|jpeg|png|webp|avif)$/i.test(file));
-  }
-} catch (error) {
-  console.error("Error reading directory", error);
-}
+// We use import.meta.glob instead of node:fs to be compatible with Cloudflare Workers/Pages
+const allImages = import.meta.glob('/public/images/**/*.{jpg,jpeg,png,webp,avif}');
+const images = Object.keys(allImages)
+  .filter(filepath => filepath.includes(`/public/images/${folder}/`))
+  .map(filepath => filepath.split('/').pop());
 
 // Map them to the corresponding import path since dynamic imports in Astro component scripts can be tricky over full filesystem.
 // We'll actually construct the path to let Vite serve them, or use dynamic import wildcard.
