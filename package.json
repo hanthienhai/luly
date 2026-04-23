@@ -8,16 +8,21 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
+    "preview": "npm run build && wrangler dev",
+    "astro": "astro",
+    "generate-types": "wrangler types",
+    "deploy": "npm run build && wrangler deploy"
   },
   "overrides": {
-    "rollup": "npm:@rollup/wasm-node@^4.60.2"
+    "rollup": "npm:@rollup/wasm-node@^4.60.2",
+    "vite": "^7"
   },
   "dependencies": {
+    "@astrojs/cloudflare": "^13.2.0",
     "astro": "^6.1.9"
   },
   "devDependencies": {
-    "playwright": "^1.59.1"
+    "playwright": "^1.59.1",
+    "wrangler": "^4.84.1"
   }
 }
